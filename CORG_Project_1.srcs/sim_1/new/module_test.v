@@ -35,48 +35,5 @@ module register_tb;
     always #5 clk = ~clk;
 
 
-        // enable = 1;
-        // funsel = 2'b00;
-        // load = 8'b00;
-        // clk = 0;
 
-        // #10;
-        // load = 8'b01;
-        // funsel = 2'b01;
-        
-        // #10;
-        // load = 8'b11;
-        // funsel = 2'b11;
-        
-        // #10;
-        // load = 8'b10;
-        // funsel = 2'b00;
-        
-        // #10;
-        // load = 8'b11;
-        // funsel = 2'b01;
-        
-        // #10;
-        // load = 8'b11;
-        // funsel = 2'b10;
-        
-        // #10;
-        // load = 8'b10;
-        // funsel = 2'b10;
-
-        // #10;
-        // load = 8'b10;
-        // funsel = 2'b10;
-        
-        // #10;
-        // load = 8'b10;
-        // funsel = 2'b10;
-        
-        // #10;
-        // enable = 0;
-        
-        // #10;
-        // enable = 1;
-        // #10 $finish;
-//    end
 endmodule
