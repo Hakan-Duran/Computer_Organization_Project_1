@@ -1,26 +1,21 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 26.03.2023 09:11:07
-// Design Name: 
-// Module Name: modules
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
 
+module register #(parameter N=2)(clk, enable, funsel, load, Q_out);
+input clk;
+input enable;
+input [1:0] funsel;
+input [N-1:0] load;
+output reg [N-1:0] Q_out;
 
-module modules(
-
-    );
+always @(posedge clk) begin
+    if (enable) begin
+       case (funsel)
+        2'b00 : Q_out <= {N{1'b0}} ;
+        2'b01 : Q_out <= load ;
+        2'b10 : Q_out <= Q_out - {{(N-1){1'b0}}, 1'b1} ;
+        2'b11 : Q_out <= Q_out + {{(N-1){1'b0}}, 1'b1} ;
+        default : Q_out <= load ;
+        endcase 
+    end
+end
 endmodule
