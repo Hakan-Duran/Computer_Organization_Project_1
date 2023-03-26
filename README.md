@@ -1,2 +1,0 @@
-# Computer_Ornagization_Project_1
-Computer_Ornagization_Project_1
