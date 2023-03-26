@@ -12,3 +12,37 @@
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/myusu/Documents/blg242/CORG_Project_1/CORG_Project_1.xpr
+update_compile_order -fileset sources_1
+update_compile_order -fileset sim_1
+launch_simulation
+source register_tb.tcl
+relaunch_sim
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+close_sim
+launch_simulation
+source register_tb.tcl
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+close_sim
+launch_simulation
+source register_tb.tcl
+close_sim
+launch_simulation
+source register_tb.tcl
+close_sim
+launch_simulation
+source register_tb.tcl
+close_sim
+launch_simulation
+source register_tb.tcl
+close_sim
+launch_simulation
+source register_tb.tcl
+close_sim
+launch_simulation
+source register_tb.tcl
+update_compile_order -fileset sim_1
+update_compile_order -fileset sim_1
+close_sim
+launch_simulation
