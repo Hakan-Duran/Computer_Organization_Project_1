@@ -32,7 +32,7 @@ output reg [15:0] irout;
 always @(enable, funsel) begin
    if (enable) begin
       case (funsel)
-         2'b00 : irout <= 16b'0; 
+         2'b00 : irout <= 16'b0; 
          2'b01 : begin 
             if (!lh) irout[7:0] <= data ;
             else irout[15:8] <= data ;
