@@ -1,12 +1,13 @@
 `timescale 1ns / 1ps
 
-module register #(parameter N=2)(enable, funsel, load, Q_out);
+module register #(parameter N=2)(clk, enable, funsel, load, Q_out);
+input clk;
 input enable;
 input [1:0] funsel;
 input [N-1:0] load;
 output reg [N-1:0] Q_out;
 
-always @(enable, funsel) begin
+always @(posedge clk) begin
     if (enable) begin
       case (funsel)
          2'b00 : Q_out <= {N{1'b0}} ;
@@ -20,16 +21,17 @@ end
 endmodule
 
 module ir (
-   data, enable, funsel, lh, irout
+   clk, data, enable, funsel, lh, irout
 );
 
+input clk;
 input [7:0] data;
 input [1:0] funsel;
 input enable;
 input lh;
 output reg [15:0] irout;
 
-always @(enable, funsel) begin
+always @(posedge clk) begin
    if (enable) begin
       case (funsel)
          2'b00 : irout <= 16'b0; 
