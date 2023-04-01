@@ -181,3 +181,125 @@ module arf (
    mux_4_1 b8 (.Data({w3[7],w2[7],w1[7],w0[7]}), .sel(outbsel), .out(outb[7]));
 
 endmodule
+
+//emre's code ***********************************************
+
+
+
+
+//last question **************************************
+//given module for memory
+module Memory(
+    input wire[7:0] address,
+    input wire[7:0] data,
+    input wire wr, //Read = 0, Write = 1
+    input wire cs, //Chip is enable when cs = 0
+    input wire clock,
+    output reg[7:0] o // Output
+);
+    //Declaration of the RAM Area
+    reg[7:0] RAM_DATA[0:255];
+    //Read Ram data from the file
+    initial $readmemh("RAM.mem", RAM_DATA);
+    //Read the selected data from RAM
+    always @(*) begin
+        o = ~wr && ~cs ? RAM_DATA[address] : 8'hZ;
+    end
+    
+    //Write the data to RAM
+    always @(posedge clock) begin
+        if (wr && ~cs) begin
+            RAM_DATA[address] <= data; 
+        end
+    end
+endmodule
+
+
+module twoToOneMuxOf8bits(input selector, input[7:0] in0, input[7:0] in1, output reg[7:0] out);
+
+always @(*) begin
+   case (selector)
+      1'b0 : out= in0;
+      1'b1 : out= in1;
+      default: assign out= in0;
+   endcase
+end
+   
+endmodule
+
+
+module fourToOneMuxOf8bits(input[1:0] selector, input[7:0] in0, input[7:0] in1,input[7:0] in2,input[7:0] in3, output reg[7:0] out);
+
+always @(*) begin
+   case (selector)
+      2'b00 :  out= in0;
+      2'b01 :  out= in1;
+      2'b10 :  out= in2;
+      2'b11 :  out= in3;
+      default: out= in0;
+   endcase
+end
+   
+endmodule
+
+
+module system (
+   input [1:0] outasel,
+   input[1:0] outbsel,
+   input [1:0] funsel_IR,
+   input [1:0] funsel_arf,
+   input [1:0] funsel_rf,
+   input [3:0] funsel_alu,
+
+
+   input [3:0] regsel_rf,
+   input [3:0] regsel_arf,
+   input clock,
+   input wrMEM,
+   input csMEM,
+   input IR_enable,
+   input IR_lh,
+   input [1:0] MUXSelA,
+   input [1:0] MUXSelB,
+   input MUXSelC,
+   input [2:0]rf_o1sel, 
+   input [2:0]rf_o2sel, 
+   input [3:0]rf_tsel,
+
+   output wire [7:0] IR_out_MSBs //most significant bits of IR_out
+);
+
+
+
+
+wire [7:0] arf_outa;//arf -muxA
+wire [7:0] arf_outb;//arf- memory adress
+wire [7:0] outALU; //waiting for emre *******************
+wire [7:0] MEMout; //memory - IR- muxA
+wire [15:0] IR_out; //direct IR output
+wire [7:0] IR_out_LSBs; //less significant bits of IR_out
+wire [7:0] muxA_out; //muxA- rf
+wire [7:0] muxB_out;//muxB-arf
+wire [7:0] muxC_out;//muxC-alu
+wire [7:0] rf_o1;//rf-muxC
+wire [7:0] rf_o2;//rf-alu
+
+
+arf ARF(clock,muxB_out, outasel, outbsel,funsel_arf,regsel_arf,arf_outa,arf_outb);
+Memory MEMORY(arf_outb, outALU, wrMEM, csMEM, clock, MEMout);
+
+ir IR(clock, MEMout, IR_enable,funsel_IR,IR_lh, IR_out); 
+assign IR_out_MSBs =IR_out[15:8];
+assign IR_out_LSBs=IR_out[7:0];
+
+
+fourToOneMuxOf8bits muxA( MUXSelA, outALU, MEMout,  IR_out_LSBs, arf_outa, muxA_out);
+fourToOneMuxOf8bits muxB(MUXSelB, outALU,MEMout,IR_out_LSBs, arf_outa, muxB_out);
+
+reg8_8 Register_File(clock, muxA_out, rf_o1sel, rf_o2sel, funsel_rf, regsel_rf, rf_tsel, rf_o1, rf_o2);
+
+twoToOneMuxOf8bits muxC(MUXSelC, rf_o1, arf_outa, muxC_out);
+// alu ALU(muxC_out,rf_o2,funsel_alu,outALU); //order A , B , funsel, outALU***************
+
+
+endmodule
