@@ -196,8 +196,8 @@ always @(posedge clk) begin
 
     case (Funsel)
         4'b0000 : begin 
-            OutALU <= A;
-            Flag[1] <= OutALU[7]; 
+            OutALU = A; 
+            Flag[1] = OutALU[7]; //If you use this type assignment <=, then assignments occurs at the same time! You should use normal =. Because OutALU[7] is x in initial time, Flag[1] also becomes x.
             if(OutALU === 8'b00000000) begin
                     Flag[3] <= 1;
                 end
@@ -206,167 +206,167 @@ always @(posedge clk) begin
                 end
             end
         4'b0001 : begin
-            OutALU <= B;
-            Flag[1] <= OutALU[7]; 
+            OutALU = B;
+            Flag[1] = OutALU[7]; 
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b0010 : begin
-            OutALU <= ~A;
-            Flag[1] <= OutALU[7]; 
+            OutALU = ~A;
+            Flag[1] = OutALU[7]; 
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b0011 : begin
-            OutALU <= ~B;
-            Flag[1] <= OutALU[7]; 
+            OutALU = ~B;
+            Flag[1] = OutALU[7]; 
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b0100 : begin
-            out <= A+B;
-            OutALU <= out[7:0];
-            Flag[0] <= (A[7]&B[7])^OutALU[7];
-            Flag[1] <= OutALU[7];
-            Flag[2] <= out[8];
+            out = A+B; //You can use {1'b0, A} + {1'b0, B} here. But left hand side also should be a 9bit register.
+            OutALU = out[7:0];
+            Flag[0] = (A[7]&B[7])^OutALU[7];
+            Flag[1] = OutALU[7];
+            Flag[2] = out[8]; //out is 8bit register. There is no 9th bit. You should use 9bit reg.
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b0101 : begin
-            out <= A-B;
-            OutALU <= out[7:0];
-            Flag[0] <= (A[7]^B[7])&(A[7]^OutALU[7]);
-            Flag[1] <= OutALU[7];
-            Flag[2] <= out[8];
+            out = A-B;
+            OutALU = out[7:0];
+            Flag[0] = (A[7]^B[7])&(A[7]^OutALU[7]);
+            Flag[1] = OutALU[7];
+            Flag[2] = out[8];
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b0110 : begin
-            out <= A+~B+9'b000000001;
-            OutALU <= out[7:0];
-            Flag[0] <= (A[7]^B[7])&(A[7]^OutALU[7]);
-            Flag[1] <= OutALU[7];
-            Flag[2] <= out[8];
+            out = A+~B+9'b000000001;
+            OutALU = out[7:0];
+            Flag[0] = (A[7]^B[7])&(A[7]^OutALU[7]);
+            Flag[1] = OutALU[7];
+            Flag[2] = out[8];
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b0111 : begin
-            OutALU <= A&B;
-            Flag[1] <= OutALU[7]; 
+            OutALU = A&B;
+            Flag[1] = OutALU[7]; 
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b1000 : begin
-            OutALU <= A|B;
-            Flag[1] <= OutALU[7]; 
+            OutALU = A|B;
+            Flag[1] = OutALU[7]; 
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b1001 : begin
-            OutALU <= ~(A&B);
-            Flag[1] <= OutALU[7]; 
+            OutALU = ~(A&B);
+            Flag[1] = OutALU[7]; 
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b1010 : begin
-            OutALU <= A^B;
-            Flag[1] <= OutALU[7]; 
+            OutALU = A^B;
+            Flag[1] = OutALU[7]; 
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b1011 : begin
-            OutALU <= A<<1;
-            Flag[1] <= OutALU[7];
-            Flag[2] <= A[7];
+            OutALU = A<<1;
+            Flag[1] = OutALU[7];
+            Flag[2] = A[7];
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b1100 : begin
-            OutALU <= A>>1;
-            Flag[1] <= OutALU[7];
-            Flag[2] <= A[0];
+            OutALU = A>>1;
+            Flag[1] = OutALU[7];
+            Flag[2] = A[0];
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b1101 : begin
-            OutALU <= A<<1;
-            Flag[0] <= A[7]^OutALU[7];
-            Flag[1] <= OutALU[7];
+            OutALU = A<<1;
+            Flag[0] = A[7]^OutALU[7];
+            Flag[1] = OutALU[7];
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b1110 : begin
-            OutALU <= A>>1;
-            OutALU[7] <= A[7];
+            OutALU = A>>1;
+            OutALU[7] = A[7]; //You forgot negativity control here.
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b1111 : begin
-            OutALU <= A>>1;
-            OutALU[7] <= A[0];
-            Flag[1] <= OutALU[7];
-            Flag[2] <= A[0];
+            OutALU = A>>1;
+            OutALU[7] = A[0];
+            Flag[1] = OutALU[7];
+            Flag[2] = A[0];
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
     endcase
