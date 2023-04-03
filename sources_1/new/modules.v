@@ -183,8 +183,195 @@ module arf (
 endmodule
 
 //emre's code ***********************************************
+module alu (clk, A, B, Funsel, Flag, OutALU);
+input clk;
+input [7:0] A;
+input [7:0] B;
+input [3:0] Funsel;
+reg [8:0] out;
+output reg [7:0] OutALU;
+output reg [3:0] Flag;
 
+always @(posedge clk) begin
 
+    case (Funsel)
+        4'b0000 : begin 
+            OutALU <= A;
+            Flag[1] <= OutALU[7]; 
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b0001 : begin
+            OutALU <= B;
+            Flag[1] <= OutALU[7]; 
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b0010 : begin
+            OutALU <= ~A;
+            Flag[1] <= OutALU[7]; 
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b0011 : begin
+            OutALU <= ~B;
+            Flag[1] <= OutALU[7]; 
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b0100 : begin
+            out <= A+B;
+            OutALU <= out[7:0];
+            Flag[0] <= (A[7]&B[7])^OutALU[7];
+            Flag[1] <= OutALU[7];
+            Flag[2] <= out[8];
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b0101 : begin
+            out <= A-B;
+            OutALU <= out[7:0];
+            Flag[0] <= (A[7]^B[7])&(A[7]^OutALU[7]);
+            Flag[1] <= OutALU[7];
+            Flag[2] <= out[8];
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b0110 : begin
+            out <= A+~B+9'b000000001;
+            OutALU <= out[7:0];
+            Flag[0] <= (A[7]^B[7])&(A[7]^OutALU[7]);
+            Flag[1] <= OutALU[7];
+            Flag[2] <= out[8];
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b0111 : begin
+            OutALU <= A&B;
+            Flag[1] <= OutALU[7]; 
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b1000 : begin
+            OutALU <= A|B;
+            Flag[1] <= OutALU[7]; 
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b1001 : begin
+            OutALU <= ~(A&B);
+            Flag[1] <= OutALU[7]; 
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b1010 : begin
+            OutALU <= A^B;
+            Flag[1] <= OutALU[7]; 
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b1011 : begin
+            OutALU <= A<<1;
+            Flag[1] <= OutALU[7];
+            Flag[2] <= A[7];
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b1100 : begin
+            OutALU <= A>>1;
+            Flag[1] <= OutALU[7];
+            Flag[2] <= A[0];
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b1101 : begin
+            OutALU <= A<<1;
+            Flag[0] <= A[7]^OutALU[7];
+            Flag[1] <= OutALU[7];
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b1110 : begin
+            OutALU <= A>>1;
+            OutALU[7] <= A[7];
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+        4'b1111 : begin
+            OutALU <= A>>1;
+            OutALU[7] <= A[0];
+            Flag[1] <= OutALU[7];
+            Flag[2] <= A[0];
+            if(OutALU === 8'b00000000) begin
+                    Flag[3] <= 1;
+                end
+            else begin
+                Flag[3] <= 0;
+                end
+            end
+    endcase
+end
+endmodule
 
 
 //last question **************************************
