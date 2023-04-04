@@ -182,7 +182,7 @@ module arf (
 
 endmodule
 
-//emre's code ***********************************************
+
 
 module flag_reg (
     clk,
@@ -396,6 +396,16 @@ always @(*) begin
 end
 endmodule
 
+module aluPlusFlagReg(input clock,input[7:0] A,input[7:0] B,input[3:0]funsel,output[7:0] outALU);
+
+flag_reg FlagReg(clock,flag,cin);
+alu arLogUn(clock, A, B, cin, funsel, flag, outALU);
+
+
+
+endmodule
+
+
 
 //last question **************************************
 //given module for memory
@@ -509,7 +519,7 @@ fourToOneMuxOf8bits muxB(MUXSelB, outALU,MEMout,IR_out_LSBs, arf_outa, muxB_out)
 reg8_8 Register_File(clock, muxA_out, rf_o1sel, rf_o2sel, funsel_rf, regsel_rf, rf_tsel, rf_o1, rf_o2);
 
 twoToOneMuxOf8bits muxC(MUXSelC, rf_o1, arf_outa, muxC_out);
-// alu ALU(muxC_out,rf_o2,funsel_alu,outALU); //order A , B , funsel, outALU***************
+// alu ALU(clock, muxC_out,rf_o2,funsel_alu,outALU); //order A , B , funsel, outALU***************
 
 
 endmodule
