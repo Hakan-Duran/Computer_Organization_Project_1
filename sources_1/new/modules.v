@@ -183,21 +183,40 @@ module arf (
 endmodule
 
 //emre's code ***********************************************
-module alu (clk, A, B, Funsel, Flag, OutALU);
+
+module flag_reg (
+    clk,
+    load,
+    cin
+);
+    input clk;
+    input [3:0] load;
+    output cin;
+    wire [3:0] out;
+    register#(4) r (.clk(clk), .enable(1'b1), .funsel(2'b01), .load(load), .Q_out(out));
+
+    assign cin = out[2];
+
+endmodule
+
+
+module alu (clk, A, B, Cin, Funsel, Flag, OutALU);
 input clk;
 input [7:0] A;
 input [7:0] B;
 input [3:0] Funsel;
-reg [8:0] out;
+input Cin;
 output reg [7:0] OutALU;
 output reg [3:0] Flag;
 
-always @(posedge clk) begin
+reg [8:0] out;
+
+always @(*) begin
 
     case (Funsel)
         4'b0000 : begin 
             OutALU = A; 
-            Flag[1] = OutALU[7]; //If you use this type assignment <=, then assignments occurs at the same time! You should use normal =. Because OutALU[7] is x in initial time, Flag[1] also becomes x.
+            Flag[1] = OutALU[7];
             if(OutALU === 8'b00000000) begin
                     Flag[3] <= 1;
                 end
@@ -236,11 +255,11 @@ always @(posedge clk) begin
                 end
             end
         4'b0100 : begin
-            out = A+B; //You can use {1'b0, A} + {1'b0, B} here. But left hand side also should be a 9bit register.
+            out = A+B;
             OutALU = out[7:0];
             Flag[0] = (A[7]&B[7])^OutALU[7];
             Flag[1] = OutALU[7];
-            Flag[2] = out[8]; //out is 8bit register. There is no 9th bit. You should use 9bit reg.
+            Flag[2] = out[8];
             if(OutALU === 8'b00000000) begin
                     Flag[3] = 1;
                 end
@@ -349,7 +368,7 @@ always @(posedge clk) begin
             end
         4'b1110 : begin
             OutALU = A>>1;
-            OutALU[7] = A[7]; //You forgot negativity control here.
+            OutALU[7] = A[7]; //Should negativity control be implemented??
             if(OutALU === 8'b00000000) begin
                     Flag[3] = 1;
                 end
@@ -369,6 +388,10 @@ always @(posedge clk) begin
                 Flag[3] = 0;
                 end
             end
+        default : begin
+            OutALU = 8'b00000000;
+            Flag = 4'b0000;
+        end
     endcase
 end
 endmodule
