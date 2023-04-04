@@ -151,17 +151,17 @@ endmodule
 
 module alu_tb;
 
-reg clk;
+
 reg [7:0] A;
 reg [7:0] B;
 reg [3:0] Funsel;
 wire [7:0] OutALU;
 wire [3:0] Flag;
 
-alu my_alu (.clk(clk), .A(A), .B(B), .Funsel(Funsel), .Flag(Flag), .OutALU(OutALU));
+alu my_alu (.A(A), .B(B), .Funsel(Funsel), .Flag(Flag), .OutALU(OutALU));
 
     initial begin
-    clk = 1;
+ 
     A = 8'b01111111;
     B = 8'b00000000;
     Funsel = 4'b0000;   #10;
@@ -222,5 +222,5 @@ alu my_alu (.clk(clk), .A(A), .B(B), .Funsel(Funsel), .Flag(Flag), .OutALU(OutAL
     $finish;
     end
 
-    always #5 clk = ~clk ;
+
 endmodule
