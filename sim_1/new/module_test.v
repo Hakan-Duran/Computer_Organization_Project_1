@@ -267,7 +267,7 @@ initial begin
     funsel_alu=4'b1010;
     regsel_rf=4'b0100;
     regsel_arf=4'b0010;
-    wrMEM=1;
+    wrMEM=0; // problematic part !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     csMEM=0;
     IR_enable=1;
     IR_lh=1;
@@ -289,7 +289,7 @@ always #6.2 funsel_rf=funsel_rf+2'b01;
 always #4 funsel_alu = funsel_alu+4'b0001;
 always #5 regsel_rf =regsel_rf + 4'b0001;
 always #5.3 regsel_arf=regsel_arf+4'b0001;
-always #4.4 wrMEM=~wrMEM;
+// always #4.4 wrMEM=~wrMEM; // problematic part !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // always #7.1 csMEM=~csMEM;
 // always #3.9 IR_enable=~IR_enable;
 always #5.8 IR_lh=~IR_lh;
