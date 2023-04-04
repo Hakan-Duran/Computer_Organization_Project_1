@@ -225,24 +225,6 @@ alu my_alu (.A(A), .B(B), .Funsel(Funsel), .Flag(Flag), .OutALU(OutALU));
 
 endmodule
 
-// module aluPlusFlagReg_test();
-// reg clock;
-// reg[7:0] A;
-// reg[7:0] B;
-// reg[3:0]funsel;
-// wire[7:0] outALU;
-// aluPlusFlagReg auf(clock,A,B,funsel,outALU);
-
-// initial begin 
-// A<=   8'b00101010;
-// B<=   8'b010101101;
-// funsel <= 
-// end
-
-
-
-// endmodule
-
 
 
 module system_test();
@@ -269,15 +251,9 @@ module system_test();
 
 
    wire[7:0] IR_out_MSBs;
-   wire[7:0] outALU;
-    wire[7:0] muxC_out;
-    wire[7:0] rf_o2;
-    wire [7:0] muxA_out;
-    
-    system sys1( outasel, outbsel, funsel_IR, funsel_arf, 
-    funsel_rf, funsel_alu,regsel_rf,regsel_arf,  clock,  wrMEM,  
-    csMEM,  IR_enable,  IR_lh,  MUXSelA,  MUXSelB,  MUXSelC,  rf_o1sel,   
-    rf_o2sel, rf_tsel, IR_out_MSBs,outALU, muxC_out, rf_o2,muxA_out);
+
+
+    system sys1( outasel, outbsel, funsel_IR, funsel_arf, funsel_rf, funsel_alu,regsel_rf,regsel_arf,  clock,  wrMEM,  csMEM,  IR_enable,  IR_lh,  MUXSelA,  MUXSelB,  MUXSelC,  rf_o1sel,   rf_o2sel,   rf_tsel, IR_out_MSBs );
 
 
 
