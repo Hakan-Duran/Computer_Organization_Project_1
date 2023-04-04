@@ -396,7 +396,8 @@ end
 endmodule
 
 module aluPlusFlagReg(input clock,input[7:0] A,input[7:0] B,input[3:0]funsel,output[7:0] outALU);
-
+wire[3:0] flag;
+wire cin;
 flag_reg FlagReg(clock,flag,cin);
 alu arLogUn( A, B, cin, funsel, flag, outALU);
 
