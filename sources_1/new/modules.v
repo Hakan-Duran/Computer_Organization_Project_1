@@ -200,12 +200,11 @@ module flag_reg (
 endmodule
 
 
-module alu (clk, A, B, Cin, Funsel, Flag, OutALU);
-input clk;
+module alu (A, B, Cin, Funsel, Flag, OutALU);
 input [7:0] A;
 input [7:0] B;
-input [3:0] Funsel;
 input Cin;
+input [3:0] Funsel;
 output reg [7:0] OutALU;
 output reg [3:0] Flag;
 
@@ -378,7 +377,7 @@ always @(*) begin
             end
         4'b1111 : begin
             OutALU = A>>1;
-            OutALU[7] = A[0];
+            OutALU[7] = Cin;
             Flag[1] = OutALU[7];
             Flag[2] = A[0];
             if(OutALU === 8'b00000000) begin
