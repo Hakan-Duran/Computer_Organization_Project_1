@@ -280,16 +280,25 @@ always @(*) begin
                 end
             end
         4'b0110 : begin
-            out = A+~B+9'b000000001;
-            OutALU = out[7:0];
-            Flag[0] = (A[7]^B[7])&(A[7]^OutALU[7]);
-            Flag[1] = OutALU[7];
-            Flag[2] = out[8];
-            if(OutALU === 8'b00000000) begin
-                    Flag[3] = 1;
-                end
-            else begin
-                Flag[3] = 0;
+                out = A-B;
+                OutALU = out[7:0];
+                Flag[0] = (A[7]^B[7])&(A[7]^OutALU[7]);
+                Flag[1] = OutALU[7];
+                Flag[2] = out[8];
+                if(OutALU === 8'b00000000) begin
+                        Flag[3] = 1;
+                    end
+                else begin
+                    Flag[3] = 0;
+                    end
+                if(~Flag[0]&~Flag[1]&~Flag[3]) begin
+                        OutALU = A;
+                    end
+                else if(Flag[0]&~A[7]) begin
+                        OutALU = A;
+                    end
+                else begin
+                        OutALU = 8'b00000000;
                 end
             end
         4'b0111 : begin
