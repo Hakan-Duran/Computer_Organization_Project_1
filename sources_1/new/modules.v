@@ -222,7 +222,7 @@ always @(*) begin
                     Flag[3] <= 1;
                 end
             else begin
-                Flag[3] <= 0;
+                Flag[3] = 0;
                 end
             end
         4'b0001 : begin
@@ -257,6 +257,9 @@ always @(*) begin
             end
         4'b0100 : begin
             out = A+B;
+            if(Flag[2] === 1) begin
+                out = out+9'b000000001;
+            end
             OutALU = out[7:0];
             Flag[0] = (A[7]&B[7])^OutALU[7];
             Flag[1] = OutALU[7];
