@@ -184,29 +184,31 @@ endmodule
 
 
 
-module flag_reg (
-    clk,
-    load,
-    cin
+// module flag_reg (
+//     clk,
+//     load,
+//     cin
+// );
+//     input clk;
+//     input [3:0] load;
+//     output cin;
+//     wire [3:0] out;
+//     register#(4) r (.clk(clk), .enable(1'b1), .funsel(2'b01), .load(load), .Q_out(out));
+
+//     assign cin = out[2];
+
+// endmodule
+
+
+module alu (
+    input [7:0] A,
+    input [7:0] B,
+
+    input [3:0] Funsel,
+    output reg [3:0] Flag,
+    output reg [7:0] OutALU
 );
-    input clk;
-    input [3:0] load;
-    output cin;
-    wire [3:0] out;
-    register#(4) r (.clk(clk), .enable(1'b1), .funsel(2'b01), .load(load), .Q_out(out));
 
-    assign cin = out[2];
-
-endmodule
-
-
-module alu (A, B, Cin, Funsel, Flag, OutALU);
-input [7:0] A;
-input [7:0] B;
-input Cin;
-input [3:0] Funsel;
-output reg [7:0] OutALU;
-output reg [3:0] Flag;
 
 reg [8:0] out;
 
@@ -386,7 +388,7 @@ always @(*) begin
             end
         4'b1111 : begin
             OutALU = A>>1;
-            OutALU[7] = Cin;
+            OutALU[7] = 0;
             Flag[1] = OutALU[7];
             Flag[2] = A[0];
             if(OutALU === 8'b00000000) begin
@@ -404,15 +406,15 @@ always @(*) begin
 end
 endmodule
 
-module aluPlusFlagReg(input clock,input[7:0] A,input[7:0] B,input[3:0]funsel,output[7:0] outALU);
-wire[3:0] flag;
-wire cin;
-flag_reg FlagReg(clock,flag,cin);
-alu arLogUn( A, B, cin, funsel, flag, outALU);
+// module aluPlusFlagReg(input clock,input[7:0] A,input[7:0] B,input[3:0]funsel,output[7:0] outALU);
+// wire[3:0] flag;
+// wire cin;
+// flag_reg FlagReg(clock,flag,cin);
+// alu arLogUn( A, B, cin, funsel, flag, outALU);
 
 
 
-endmodule
+// endmodule
 
 
 
@@ -472,63 +474,69 @@ end
 endmodule
 
 
-module system (
-   input [1:0] outasel,
-   input[1:0] outbsel,
-   input [1:0] funsel_IR,
-   input [1:0] funsel_arf,
-   input [1:0] funsel_rf,
-   input [3:0] funsel_alu,
-
-
-   input [3:0] regsel_rf,
-   input [3:0] regsel_arf,
-   input clock,
-   input wrMEM,
-   input csMEM,
-   input IR_enable,
-   input IR_lh,
-   input [1:0] MUXSelA,
-   input [1:0] MUXSelB,
-   input MUXSelC,
-   input [2:0]rf_o1sel, 
-   input [2:0]rf_o2sel, 
-   input [3:0]rf_tsel,
-
-   output wire [7:0] IR_out_MSBs //most significant bits of IR_out
-);
 
 
 
 
-wire [7:0] arf_outa;//arf -muxA
-wire [7:0] arf_outb;//arf- memory adress
-wire [7:0] outALU; //waiting for emre *******************
-wire [7:0] MEMout; //memory - IR- muxA
-wire [15:0] IR_out; //direct IR output
-wire [7:0] IR_out_LSBs; //less significant bits of IR_out
-wire [7:0] muxA_out; //muxA- rf
-wire [7:0] muxB_out;//muxB-arf
-wire [7:0] muxC_out;//muxC-alu
-wire [7:0] rf_o1;//rf-muxC
-wire [7:0] rf_o2;//rf-alu
+
+module ALUSystem (
+    input [1:0] ARF_OutASel,
+    input[1:0] ARF_OutBSel,
+    input [1:0] IR_Funsel,
+    input [1:0] ARF_FunSel,
+    input [1:0] RF_FunSel,
+    input [3:0] ALU_FunSel,
 
 
-arf ARF(clock,muxB_out, outasel, outbsel,funsel_arf,regsel_arf,arf_outa,arf_outb);
-Memory MEMORY(arf_outb, outALU, wrMEM, csMEM, clock, MEMout);
+    input [3:0] RF_RSel,
+    input [3:0] ARF_RSel,
+    input Clock,
+    input Mem_WR,
+    input Mem_CS,
+    input IR_Enable,
+    input IR_LH,
+    input [1:0] MuxASel,
+    input [1:0] MuxBSel,
+    input MuxCSel,
+    input [2:0]RF_OutASel, 
+    input [2:0]RF_OutBSel, 
+    input [3:0]RF_TSel,
 
-ir IR(clock, MEMout, IR_enable,funsel_IR,IR_lh, IR_out); 
-assign IR_out_MSBs =IR_out[15:8];
-assign IR_out_LSBs=IR_out[7:0];
+   
+    output wire [7:0] AOut,//rf-muxC
+    output wire [7:0] BOut,//rf-alu
+    output wire [7:0] ALUOut,
+    output wire [3:0] ALUOutFlag,
+    output wire [7:0] ARF_AOut,//arf -muxA
+    output wire [7:0] Address,//arf- memory adress
+    output wire [7:0] MemoryOut, //memory - IR- muxA
+    output wire [7:0] MuxAOut, //muxA- rf
+    output wire [7:0] MuxBOut,//muxB-arf
+    output wire [7:0] MuxCOut,//muxC-alu
+    output wire [15:0] IROut //direct IR output
+    );
 
 
-fourToOneMuxOf8bits muxA( MUXSelA, outALU, MEMout,  IR_out_LSBs, arf_outa, muxA_out);
-fourToOneMuxOf8bits muxB(MUXSelB, outALU,MEMout,IR_out_LSBs, arf_outa, muxB_out);
+    wire [7:0] IROut_LSBs; //less significant bits of IROut
+    wire [7:0] IROut_MSBs; //most significant bits of IROut
 
-reg8_8 Register_File(clock, muxA_out, rf_o1sel, rf_o2sel, funsel_rf, regsel_rf, rf_tsel, rf_o1, rf_o2);
 
-twoToOneMuxOf8bits muxC(MUXSelC, rf_o1, arf_outa, muxC_out);
-aluPlusFlagReg ALU(clock, muxC_out,rf_o2,funsel_alu,outALU); //order A , B , funsel, outALU***************
+
+    arf ARF(Clock,MuxBOut, ARF_OutASel, ARF_OutBSel,ARF_FunSel,ARF_RSel,ARF_AOut,Address);
+    Memory MEMORY(Address, ALUOut, Mem_WR, Mem_CS, Clock, MemoryOut);
+
+    ir IR(Clock, MemoryOut, IR_Enable,IR_Funsel,IR_LH, IROut); 
+    assign IROut_MSBs =IROut[15:8];
+    assign IROut_LSBs=IROut[7:0];
+
+
+    fourToOneMuxOf8bits muxA( MuxASel, ALUOut, MemoryOut,  IROut_LSBs, ARF_AOut, MuxAOut);
+    fourToOneMuxOf8bits muxB(MuxBSel, ALUOut,MemoryOut,IROut_LSBs, ARF_AOut, MuxBOut);
+
+    reg8_8 Register_File(Clock, MuxAOut, RF_OutASel, RF_OutBSel, RF_FunSel, RF_RSel, RF_TSel, AOut, BOut);
+
+    twoToOneMuxOf8bits muxC(MuxCSel, AOut, ARF_AOut, MuxCOut);
+    alu ALU(MuxCOut,BOut,ALU_FunSel,ALUOutFlag,ALUOut); 
 
 
 endmodule
