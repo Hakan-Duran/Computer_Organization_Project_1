@@ -211,8 +211,19 @@ module alu (
 
 
 reg [8:0] out;
+reg [8:0] A_9;
+reg [8:0] B_9;
+reg [8:0] B_comp_9;
+
 
 always @(*) begin
+
+A_9 = A;
+B_9 = B;
+B_comp_9 = ~B;
+A_9[8] = 0;
+B_9[8] = 0;
+B_comp_9[8] = 0;
 
     case (Funsel)
         4'b0000 : begin 
@@ -256,7 +267,7 @@ always @(*) begin
                 end
             end
         4'b0100 : begin
-            out = A+B;
+            out = A_9 + B_9;
             if(Flag[2] === 1) begin
                 out = out+9'b000000001;
             end
@@ -272,7 +283,7 @@ always @(*) begin
                 end
             end
         4'b0101 : begin
-            out = A-B;
+            out = A_9 + B_comp_9 + 9'b000000001;
             OutALU = out[7:0];
             Flag[0] = (A[7]^B[7])&(A[7]^OutALU[7]);
             Flag[1] = OutALU[7];
@@ -285,7 +296,7 @@ always @(*) begin
                 end
             end
         4'b0110 : begin
-                out = A-B;
+                out = A + B_comp_9 + 9'b000000001;
                 OutALU = out[7:0];
                 Flag[0] = (A[7]^B[7])&(A[7]^OutALU[7]);
                 Flag[1] = OutALU[7];
