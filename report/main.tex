@@ -33,7 +33,7 @@
 \centering
 \Large{
 \begin{tabular}{lcl}
-\textbf{HOMEWORK DATE}  & : & 12.04.2023\\
+\textbf{PROJECT DATE}  & : & 12.04.2023\\
 \end{tabular}}
 \end{table}
 \vspace{1cm}
@@ -66,19 +66,99 @@ number  & : & name \\
 
 
 \section{IMPLEMENTATIONS AND EXPLANATIONS }
-\subsection{FALAN filan}
+\subsection{Part 4}
+In this part, our purpose is to combine all previously made modules. 
+At first we started with adding memory module that provided. We see that when 
+we are in the write mode it gives high impedance as output and in the read mode
+ we cannot change what is inside of memory.
+
+ Our first thought about this is we will write a test bench, so that IR will not
+  take input from memory when memory is in the write mode. Not only IR but also 
+  two Multiplexer is also taking input from memory which we want to avoid when 
+  memory is in writing mode. We did not implemeted our test bench because we saw
+   that test bench is already shared one day later (the day we were thinking to 
+   start implemeting).
+
+   After adding module of memory, we defined wires that comes into/ goes out of 
+   memory. Adress and outALU is not currently output of any other module. 
+
+   At first we did not thought that nearly every wires have to be senesed as 
+   output as test bench required. Therefore, initally we made them as intermadiate 
+   wires. Then after we see the output wire names, we changed nearlly all our wires' 
+   name and make them output.
+
+	For the connection of IR, we gave 8 least signficant bits to the Multiplexer A.
+	At our initial design we output IR's most signficant 8 bits from system but later we change
+	 it so that it outputs all 16 bits as outputs.
+
+	After IR, we add modules of Multiplexer A and Multiplexer B. Even though 
+	Multiplexer is already implemented for previous parts, we cannot use them 
+	directly because they are just 1 bit which in case of use, make our module
+	complicated. Hence, we made another module for four to one Multiplexer which 
+	takes and gives 8 bit values. Not only four two one multiplexer, but also two
+	to one multiplexer which also processing 8 bit values had been made to use on 
+	multiplexer C. 
+
+	After connecting relevant wires to multiplexers, we added ARF to the system.
+	We add new inputs to the system so that we can modify outputs of the ARF.
+
+	With the addition of this module we see that order of call of modules inside of another 
+	module does not important if there is exist intermadiate signals (wires), because
+	ARF depends on memory via multiplexer and memory depends on ARF through memory
+	 address information.
+
+	 Later we add register file and multipexer C to the system. And we made the connections.
+
+	For the ALU at first we make sepearated flag register but due to input and outputs of ALU 
+	is strictly given, we connot write sepearated cin input for ALU which directed us to use a register
+	inside of ALU module for flag. Then we made proper input and output connections to the ALU
+	module.
+
+	\textbf{inputs:}
+	ARFOutASel(2 bit), ARFOutBSel(2 bit), IRFunsel(2 bit), ARFFunSel(2 bit),
+	RFFunSel(2 bit), ALUFunSel(4 bit), RFRSel(4 bit), ARFRSel(4 bit),
+	Clock(1 bit), MemWR(1 bit), MemCS(1 bit), IREnable(1 bit),
+	IRLH(1 bit), MuxASel(2 bit), MuxBSel(2 bit), MuxCSel(1 bit),
+	RFOutASel(3 bit), RFOutBSel(3 bit), RFTSel(4 bit)
+
+
+	\textbf{outputs:} 
+
+	AOut (8 bits),
+    BOut (8 bits),
+    ALUOut (8 bits),
+    ALUOutFlag (4 bits),
+    ARF_AOut (8 bits),
+    Address (8 bits),
+    MemoryOut (8 bits), 
+    MuxAOut (8 bits), 
+    MuxBOut (8 bits),
+    MuxCOut (8 bits),
+    IROut (16 bits)
+
+	\textbf{function name:} ALUSystem
+
+
+
+
+
+
 
 \section{DESIGN PHOTOS}
+
+
+\subsection{Part 4}
     \begin{figure}[H]
     	\centering
-    	\includegraphics[width=0.8\textwidth]{download.jpg}	
-    	\caption{sample}
-    	\label{sample}
+    	\includegraphics[width=0.9\textwidth]{design/ALU_system.png}	
+    	\caption{ALU System Design}
+    	\label{ALU System Design}
     \end{figure}
 
 
 \section{RESULTS}
-hakan emre
+\subsection{Part 4}
+result of the part 4 will be added when test bench given
 
 
 \section{CONCLUSION}
