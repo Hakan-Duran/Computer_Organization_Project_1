@@ -66,6 +66,45 @@ number  & : & name \\
 
 
 \section{IMPLEMENTATIONS AND EXPLANATIONS }
+\subsection{Part 2}
+\subsubsection{Part 2.c}
+In part 2c, we implemented Adress Register File (ARF) using registers we implemented at 
+very begining. As a parameter values, we gave registers 8 bits as 8 bit is necesarry for 
+implementing PC, AR, SP and PCPast. Besides, of enable and clock these registers 
+already supports funsel and load capabilities, which works as specified in part 2.a. 
+Therefore, we can directly send clock, funsel and load informations coming from 
+input of this module to these registers without writing them again explicitly.
+
+However, for the rsel, like in the part 2.b we will send individual bits to the enables of
+the registers. As in the insturction, if a bit comming to the enable is 1, then operation
+decleared by funsel will be done.
+
+All 8-bit of information coming from these registers are connected to 16 multiplexers.
+
+First 8 of them used for getting result of outA and other 8 used for getting result of 
+outB. Which of these groups takes inputs with same patterns.
+
+What these multipexers do is that they take significatly same digits of different registers 
+as inputs and output the bit of a register that wanted by outasel or outbsel. As specified
+in the part 2.c; 00 gives AR's bits,01 SP's bits, 10 PCPrev's bits,11 PC's bits. 
+These two 8 bits comming from multipexers concatinated in outa and outb and gaved as
+the output of the module.
+
+\textbf{inputs:}    clk(1 bit),
+load(8 bits),
+outasel(2 bits),
+outbsel(2 bits),
+funsel(2 bits),
+rsel(4 bits)
+
+\textbf{outputs:}    
+outa(8 bits),
+outb(8 bits)
+
+\textbf{module name:} arf
+
+
+
 \subsection{Part 4}
 In this part, our purpose is to combine all previously made modules. 
 At first we started with adding memory module that provided. We see that when 
@@ -114,6 +153,9 @@ we are in the write mode it gives high impedance as output and in the read mode
 	inside of ALU module for flag. Then we made proper input and output connections to the ALU
 	module.
 
+	
+
+
 	\textbf{inputs:}
 	ARFOutASel(2 bit), ARFOutBSel(2 bit), IRFunsel(2 bit), ARFFunSel(2 bit),
 	RFFunSel(2 bit), ALUFunSel(4 bit), RFRSel(4 bit), ARFRSel(4 bit),
@@ -123,12 +165,11 @@ we are in the write mode it gives high impedance as output and in the read mode
 
 
 	\textbf{outputs:} 
-
 	AOut (8 bits),
     BOut (8 bits),
     ALUOut (8 bits),
     ALUOutFlag (4 bits),
-    ARF_AOut (8 bits),
+    ARFAOut (8 bits),
     Address (8 bits),
     MemoryOut (8 bits), 
     MuxAOut (8 bits), 
@@ -136,7 +177,7 @@ we are in the write mode it gives high impedance as output and in the read mode
     MuxCOut (8 bits),
     IROut (16 bits)
 
-	\textbf{function name:} ALUSystem
+	\textbf{module name:} ALUSystem
 
 
 
@@ -145,7 +186,14 @@ we are in the write mode it gives high impedance as output and in the read mode
 
 
 \section{DESIGN PHOTOS}
-
+\subsection{Part 2}
+\subsubsection{Part 2.c}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{design/arf.png}	
+	\caption{ARF System Design}
+	\label{ARF System Design}
+\end{figure}
 
 \subsection{Part 4}
     \begin{figure}[H]
@@ -156,7 +204,23 @@ we are in the write mode it gives high impedance as output and in the read mode
     \end{figure}
 
 
+
+
+
+
+
+
 \section{RESULTS}
+\subsection{Part 2}
+\subsubsection{Part 2.c}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{results/arf.png}	
+	\caption{ARF Simulation}
+	\label{ARF Simulation}
+\end{figure}
+
+
 \subsection{Part 4}
 result of the part 4 will be added when test bench given
 

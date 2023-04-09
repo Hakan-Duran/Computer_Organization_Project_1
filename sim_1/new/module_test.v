@@ -149,6 +149,44 @@ module reg8_8_tb;
 
 endmodule
 
+module arf_tb();
+
+   reg clk;
+   reg[7:0] load;
+   reg[1:0] outasel;
+   reg[1:0] outbsel;
+   reg[1:0] funsel;
+   reg[3:0] rsel;
+   wire[7:0] outa;
+   wire[7:0] outb;
+
+        arf ARF(clk, load, outasel, outbsel, funsel, rsel, outa, outb);
+
+    initial begin
+        clk=0;   outasel=2'b00; outbsel=2'b01;
+        rsel=4'b 1111; funsel=2'b00; #10;
+
+        load = 8'b00101010; #500;
+        load = 8'b11101000; #500;
+
+
+
+
+    end
+
+    always #5 clk=~clk;
+    always #100 rsel=rsel+4'b0001;
+    always #103 funsel= funsel+2'b01;
+    always #104 outasel=outasel+2'b01; 
+    always #105 outbsel=outbsel+2'b01;
+    
+
+
+
+endmodule
+
+
+
 module alu_tb;
 
 
