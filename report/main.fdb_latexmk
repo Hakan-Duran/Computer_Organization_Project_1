@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1681163361 "d:/Computer_Organization_Homework_1/Homework_1/Homework_1.srcs/report/main.tex" "main.pdf" "main" 1681163363 2
+["pdflatex"] 1681163384 "d:/Computer_Organization_Homework_1/Homework_1/Homework_1.srcs/report/main.tex" "main.pdf" "main" 1681163387 2
   "C:/Users/USER/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1681139188 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/USER/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1681059643 10771591 b910293c3ac84d1719f0f25c651f6218 ""
   "D:/Miktex/fonts/tfm/public/cm/cmbx12.tfm" 1136765053 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -142,9 +142,9 @@
   "design/ALU_system.png" 1681058803 90480 d5a1aa4db4d1d333342c6e6813def274 ""
   "design/alu.png" 1681162031 44031 d4f19a1aab93c9ab8bbe45bba861613c ""
   "design/arf.png" 1681058803 42578 1df3544b8cf102d27e5bc7bc555a349c ""
-  "main.aux" 1681163363 4933 51c0f7df584a00a1139f48a2dd3c7420 "pdflatex"
+  "main.aux" 1681163386 4933 51c0f7df584a00a1139f48a2dd3c7420 "pdflatex"
   "main.tex" 1681162688 15016 756ee6d7fa7ec2f496b48561331fa25e ""
-  "main.toc" 1681163363 2194 b57226f0039f33fa784d19d790f50b0f "pdflatex"
+  "main.toc" 1681163386 2194 b57226f0039f33fa784d19d790f50b0f "pdflatex"
   "results/alu_1.png" 1681161683 6057 87a2aa0308da23b50a8bb9ceb0c747e1 ""
   "results/alu_2.png" 1681161710 6319 b982a6349eb430672dba82636cc4c6ae ""
   "results/alu_3.png" 1681161758 5970 113616efbb57a6ad0b4de576663a1be2 ""
