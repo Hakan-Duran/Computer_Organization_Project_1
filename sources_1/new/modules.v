@@ -230,7 +230,7 @@ B_comp_9[8] = 0;
             OutALU = A; 
             Flag[1] = OutALU[7];
             if(OutALU === 8'b00000000) begin
-                    Flag[3] <= 1;
+                    Flag[3] = 1;
                 end
             else begin
                 Flag[3] = 0;
@@ -392,7 +392,7 @@ B_comp_9[8] = 0;
             end
         4'b1110 : begin
             OutALU = A>>1;
-            OutALU[7] = A[7]; //Should negativity control be implemented??
+            OutALU[7] = A[7]; 
             if(OutALU === 8'b00000000) begin
                     Flag[3] = 1;
                 end
