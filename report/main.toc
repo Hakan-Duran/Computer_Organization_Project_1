@@ -1,0 +1,45 @@
+\par 
+\par 
+\contentsline {section}{\numberline {1}INTRODUCTION}{1}{}%
+\contentsline {section}{\numberline {2}IMPLEMENTATIONS AND EXPLANATIONS }{1}{}%
+\contentsline {subsection}{\numberline {2.1}Part 1}{1}{}%
+\contentsline {subsection}{\numberline {2.2}Part 2}{1}{}%
+\contentsline {subsubsection}{\numberline {2.2.1}Part 2.a}{1}{}%
+\contentsline {subsubsection}{\numberline {2.2.2}Part 2.b}{2}{}%
+\contentsline {subsubsection}{\numberline {2.2.3}Part 2.c}{2}{}%
+\contentsline {subsection}{\numberline {2.3}Part 3}{3}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}FunSel=0000}{3}{}%
+\contentsline {subsubsection}{\numberline {2.3.2}FunSel=0001}{4}{}%
+\contentsline {subsubsection}{\numberline {2.3.3}FunSel=0010}{4}{}%
+\contentsline {subsubsection}{\numberline {2.3.4}FunSel=0011}{4}{}%
+\contentsline {subsubsection}{\numberline {2.3.5}FunSel=0100}{4}{}%
+\contentsline {subsubsection}{\numberline {2.3.6}FunSel=0101}{4}{}%
+\contentsline {subsubsection}{\numberline {2.3.7}FunSel=0110}{4}{}%
+\contentsline {subsubsection}{\numberline {2.3.8}FunSel=0111}{5}{}%
+\contentsline {subsubsection}{\numberline {2.3.9}FunSel=1000}{5}{}%
+\contentsline {subsubsection}{\numberline {2.3.10}FunSel=1001}{5}{}%
+\contentsline {subsubsection}{\numberline {2.3.11}FunSel=1010}{5}{}%
+\contentsline {subsubsection}{\numberline {2.3.12}FunSel=1011}{5}{}%
+\contentsline {subsubsection}{\numberline {2.3.13}FunSel=1100}{5}{}%
+\contentsline {subsubsection}{\numberline {2.3.14}FunSel=1101}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.15}FunSel=1110}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.16}FunSel=1111}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.17}}{6}{}%
+\contentsline {subsection}{\numberline {2.4}Part 4}{6}{}%
+\contentsline {section}{\numberline {3}DESIGN PHOTOS}{8}{}%
+\contentsline {subsection}{\numberline {3.1}Part 1}{8}{}%
+\contentsline {subsection}{\numberline {3.2}Part 2}{8}{}%
+\contentsline {subsubsection}{\numberline {3.2.1}Part 2.a}{8}{}%
+\contentsline {subsubsection}{\numberline {3.2.2}Part 2.b}{9}{}%
+\contentsline {subsubsection}{\numberline {3.2.3}Part 2.c}{10}{}%
+\contentsline {subsection}{\numberline {3.3}Part 3}{11}{}%
+\contentsline {subsection}{\numberline {3.4}Part 4}{12}{}%
+\contentsline {section}{\numberline {4}RESULTS}{12}{}%
+\contentsline {subsection}{\numberline {4.1}Part 1}{12}{}%
+\contentsline {subsection}{\numberline {4.2}Part 2}{13}{}%
+\contentsline {subsubsection}{\numberline {4.2.1}Part 2.a}{13}{}%
+\contentsline {subsubsection}{\numberline {4.2.2}Part 2.b}{13}{}%
+\contentsline {subsubsection}{\numberline {4.2.3}Part 2.c}{13}{}%
+\contentsline {subsection}{\numberline {4.3}Part 3}{13}{}%
+\contentsline {subsection}{\numberline {4.4}Part 4}{14}{}%
+\contentsline {section}{\numberline {5}CONCLUSION}{14}{}%
