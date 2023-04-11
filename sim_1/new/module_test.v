@@ -344,22 +344,22 @@ module Project1Test();
         if (~Reset) // skip during reset
         begin
             $display("Input Values:");
-            $display("Operation: %d", Operation);
-            $display("Register File: O1Sel: %d, O2Sel: %d, FunSel: %d, RSel: %d, TSel: %d", RF_O1Sel, RF_O2Sel, RF_FunSel, RF_RSel, RF_TSel);            
-            $display("ALU FunSel: %d", ALU_FunSel);
-            $display("Addres Register File: OutASel: %d, OutBSel: %d, FunSel: %d, Regsel: %d", ARF_OutASel, ARF_OutBSel, ARF_FunSel, ARF_RSel);            
-            $display("Instruction Register: LH: %d, Enable: %d, FunSel: %d", IR_LH, IR_Enable, IR_Funsel);            
-            $display("Memory: WR: %d, CS: %d", Mem_WR, Mem_CS);
-            $display("MuxASel: %d, MuxBSel: %d, MuxCSel: %d", MuxASel, MuxBSel, MuxCSel);
+            $display("Operation: %b", Operation);
+            $display("Register File: O1Sel: %b, O2Sel: %b, FunSel: %b, RSel: %b, TSel: %b", RF_O1Sel, RF_O2Sel, RF_FunSel, RF_RSel, RF_TSel);            
+            $display("ALU FunSel: %b", ALU_FunSel);
+            $display("Addres Register File: OutASel: %b, OutBSel: %b, FunSel: %b, Regsel: %b", ARF_OutASel, ARF_OutBSel, ARF_FunSel, ARF_RSel);            
+            $display("Instruction Register: LH: %b, Enable: %b, FunSel: %b", IR_LH, IR_Enable, IR_Funsel);            
+            $display("Memory: WR: %b, CS: %b", Mem_WR, Mem_CS);
+            $display("MuxASel: %b, MuxBSel: %b, MuxCSel: %b", MuxASel, MuxBSel, MuxCSel);
             
             $display("");
             $display("Output Values:");
-            $display("Register File: AOut: %d, BOut: %d", _ALUSystem.AOut, _ALUSystem.BOut);            
-            $display("ALUOut: %d, ALUOutFlag: %d, ALUOutFlags: Z:%d, C:%d, N:%d, O:%d,", _ALUSystem.ALUOut, _ALUSystem.ALUOutFlag, _ALUSystem.ALUOutFlag[3],_ALUSystem.ALUOutFlag[2],_ALUSystem.ALUOutFlag[1],_ALUSystem.ALUOutFlag[0]);
-            $display("Address Register File: AOut: %d, BOut (Address): %d", _ALUSystem.AOut, _ALUSystem.Address);            
-            $display("Memory Out: %d", _ALUSystem.MemoryOut);            
-            $display("Instruction Register: IROut: %d", _ALUSystem.IROut);            
-            $display("MuxAOut: %d, MuxBOut: %d, MuxCOut: %d", _ALUSystem.MuxAOut, _ALUSystem.MuxBOut, _ALUSystem.MuxCOut);
+            $display("Register File: AOut: %b, BOut: %b", _ALUSystem.AOut, _ALUSystem.BOut);            
+            $display("ALUOut: %b, ALUOutFlag: %b, ALUOutFlags: Z:%b, C:%b, N:%b, O:%b,", _ALUSystem.ALUOut, _ALUSystem.ALUOutFlag, _ALUSystem.ALUOutFlag[3],_ALUSystem.ALUOutFlag[2],_ALUSystem.ALUOutFlag[1],_ALUSystem.ALUOutFlag[0]);
+            $display("Address Register File: AOut: %b, BOut (Address): %b", _ALUSystem.AOut, _ALUSystem.Address);            
+            $display("Memory Out: %b", _ALUSystem.MemoryOut);            
+            $display("Instruction Register: IROut: %b", _ALUSystem.IROut);            
+            $display("MuxAOut: %b, MuxBOut: %b, MuxCOut: %b", _ALUSystem.MuxAOut, _ALUSystem.MuxBOut, _ALUSystem.MuxCOut);
             
             // increment array index and read next testvector
             VectorNum = VectorNum + 1;
