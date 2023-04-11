@@ -325,6 +325,21 @@ module Project1Test();
     reg[1:0] MuxBSel;
     reg MuxCSel;
     reg      Clock;
+
+//outputs
+    wire [7:0] AOut;//rf-muxC
+    wire [7:0] BOut;//rf-alu
+    wire [7:0] ALUOut;
+    wire [3:0] ALUOutFlag;
+    wire [7:0] ARF_AOut;//arf -muxA
+    wire [7:0] Address;//arf- memory adress
+    wire [7:0] MemoryOut; //memory - IR- muxA
+    wire [7:0] MuxAOut; //muxA- rf
+    wire [7:0] MuxBOut;//muxB-arf
+    wire [7:0] MuxCOut;//muxC-alu
+    wire [15:0] IROut; //direct IR output
+//outputs will be commented later
+
     
     //Test Bench Connection of ALU System
     ALU_System _ALUSystem(
@@ -346,7 +361,21 @@ module Project1Test();
     .MuxASel(MuxASel),
     .MuxBSel(MuxBSel),
     .MuxCSel(MuxCSel),
-    .Clock(Clock)
+    .Clock(Clock),
+    //outputs
+    .AOut(AOut),
+    .BOut(BOut),
+    .ALUOut(ALUOut),
+    .ALUOutFlag(ALUOutFlag),
+    .ARF_AOut(ARF_AOut),
+    .Address(Address),
+    .MemoryOut(MemoryOut),
+    .MuxAOut(MuxAOut),
+    .MuxBOut(MuxBOut),
+    .MuxCOut(MuxCOut),
+    . IROut( IROut)
+    //this part will be commented later
+
     );
     
     //Test Vector Variables
