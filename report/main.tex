@@ -63,6 +63,27 @@
 
 \setcounter{page}{1}
 \section{INTRODUCTION}
+In this project our purpose is to make arithmetic logic unit (ALU) system. To achive 
+this we firstly implemented small components of this system. 
+
+At first, we designed n-bit register which accepts any n bit binary number and make
+operations as if loading incrementing and decrementing by 1 and clearing.
+
+In the second part we desgined compenents which contain multiple registers and 
+manipulated them regarding to the incoming inputs. In part 2.a, we designed
+instruction Register (IR). Only one half of the register affected at a time.
+In part 2.b,  we designed register file (RF). One can change any register at any time even can 
+change all registers at the same time. Besides, number of output also changed. We can send
+2 output for various different combinations. Then we implemented Adress Register File (ARF),
+which contains program counter (PC), Adress Register (AR), Stack Pointer (SP) and PcPast.
+These registers are all 8 bits, so only difference between RF and ARF is that later contains
+4 of 8-bit register.  
+
+Then we implemented ALU. It makes 16 different operations to two number. It is simply a 
+combinational logic device which does not contains memory to make operations faster.
+Returns 4 bit of flag whose purpose is explained in the next section.
+
+
 
 
 \section{IMPLEMENTATIONS AND EXPLANATIONS }
@@ -77,8 +98,8 @@ Changing register's value is
 provided by 2 bit FunSel input. FunSel has 4 different combinations for clear,
 load, decrement and increment. Clear function is changing register's value to
 n bit zero. Load function is loading n bit load value to register. Decrement and
-increment functions changing register's value by adding or substracting one to
-previous value. Register's current value can be reached from Q_out output port.
+increment functions changing register's value by adding or substracting one to 
+previous value. Register's current value can be reached from Qout output port.
 
 In register module, always block has been used and trigger time of always block
 is when clock is at positive edge situation. Then if block checks for enable input.
@@ -91,13 +112,13 @@ funsel(2 bits),
 load(n bits),
 
 \textbf{outputs:}    
-Q_out(n bits)
+Qout(n bits)
 
 \textbf{module name:} register
 
 \subsection{Part 2}
 \subsubsection{Part 2.a}
-In part 2a, we implemented instruction register (IR) which will be used in ALU_System.
+In part 2a, we implemented instruction register (IR) which will be used in ALU System.
 This register has enable input that has same functionality with part 1 register. It
 is for adjusting if IR will remain same or change its value. Thsi register take 8
 bit input and gives 16 bit output.
@@ -297,7 +318,7 @@ we are in the write mode it gives high impedance as output and in the read mode
    start implemeting).
 
    After adding module of memory, we defined wires that comes into/ goes out of 
-   memory. Adress and outALU is not currently output of any other module. 
+   memory. Adress and ALUOut are not currently output of any other module. 
 
    At first we did not thought that nearly every wires have to be senesed as 
    output as test bench required. Therefore, initally we made them as intermadiate 
@@ -335,8 +356,8 @@ we are in the write mode it gives high impedance as output and in the read mode
 
 
 	\textbf{inputs:}
-	ARFOutASel(2 bit), ARFOutBSel(2 bit), IRFunsel(2 bit), ARFFunSel(2 bit),
-	RFFunSel(2 bit), ALUFunSel(4 bit), RFRSel(4 bit), ARFRSel(4 bit),
+	ARFOutCSel(2 bit), ARFOutDSel(2 bit), IRFunsel(2 bit), ARFFunSel(2 bit),
+	RFFunSel(2 bit), ALUFunSel(4 bit), RFRSel(4 bit), ARFRegSel(4 bit),
 	Clock(1 bit), MemWR(1 bit), MemCS(1 bit), IREnable(1 bit),
 	IRLH(1 bit), MuxASel(2 bit), MuxBSel(2 bit), MuxCSel(1 bit),
 	RFOutASel(3 bit), RFOutBSel(3 bit), RFTSel(4 bit)
