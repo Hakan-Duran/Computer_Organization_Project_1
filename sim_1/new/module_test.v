@@ -36,9 +36,26 @@ module register_tb;
         
         #10;
 
+        funsel = 2'b11;
+        
+        #10;
+        
+        funsel = 2'b11;
+        
+        #10;
+        enable = 0;
+        funsel = 2'b00;
+        
+        #10;
+        load = 8'b11111100;
         funsel = 2'b10;
         
         #10;
+        enable = 1;
+        funsel = 2'b01;
+        
+        #10;
+        funsel = 2'b11;
         
         $finish;
     end
@@ -70,7 +87,7 @@ module ir_tb;
         funsel = 2'b01;
         
         #10;
-        data = 8'b00000001;
+        data = 8'b00000010;
         lh = 0;
         
         funsel = 2'b01;
@@ -86,6 +103,20 @@ module ir_tb;
         #10;
 
         funsel = 2'b11;
+        
+        #10;
+        data = 8'b00001000;
+        lh = 1;
+        funsel = 2'b01;
+        
+        #10;
+        funsel = 2'b10;
+        
+        #20;
+        
+        funsel = 2'b00;
+        
+        #10;
         
         $finish;
     end
@@ -140,6 +171,14 @@ module reg8_8_tb;
         #10;
 
         funsel = 2'b11;
+        
+        #10;
+        funsel = 2'b00;
+        
+        #10;
+        funsel = 2'b10;
+        
+        #20;
         
         $finish;
 

@@ -42,9 +42,9 @@
 \centering
 \Large{
 \begin{tabular}{rcl}
-number  & : & name \\
 150220762  & : & Muhammed Yusuf Mermer  \\
 150210071  & : & Emre Çamlıca \\
+150200091  & : & Hakan Duran \\
 \end{tabular}}
 \end{table}
 \vspace{2.8cm}
@@ -66,7 +66,93 @@ number  & : & name \\
 
 
 \section{IMPLEMENTATIONS AND EXPLANATIONS }
+\subsection{Part 1}
+In part 1, we design a register in which will be used in other parts. Register
+is n bit register. Here, n has a parameter functionality. We can adjust 
+how many bits in it. This register has an enable input which adjusts 
+if the register will be protect
+its previous state or will change its value. 
+
+Changing register's value is
+provided by 2 bit FunSel input. FunSel has 4 different combinations for clear,
+load, decrement and increment. Clear function is changing register's value to
+n bit zero. Load function is loading n bit load value to register. Decrement and
+increment functions changing register's value by adding or substracting one to
+previous value. Register's current value can be reached from Q_out output port.
+
+In register module, always block has been used and trigger time of always block
+is when clock is at positive edge situation. Then if block checks for enable input.
+If enable is 0, then nothing happens so that value of register remains same. If
+enable is 1, then which function will be processed by controlling the FunSel input.
+
+\textbf{inputs:}    clk(1 bit),
+enable(1 bit),
+funsel(2 bits),
+load(n bits),
+
+\textbf{outputs:}    
+Q_out(n bits)
+
+\textbf{module name:} register
+
 \subsection{Part 2}
+\subsubsection{Part 2.a}
+In part 2a, we implemented instruction register (IR) which will be used in ALU_System.
+This register has enable input that has same functionality with part 1 register. It
+is for adjusting if IR will remain same or change its value. Thsi register take 8
+bit input and gives 16 bit output.
+
+Changing IR's value is provided by 2 bit FunSel and LH input. FunSel's clear,
+increment and decrement functions are doing same functions with that of part 1
+register and LH input is not important for this functions. In FunSel's load function,
+there is two different choices where to load input bits. We can load inputs to IR's
+least significant bits (0 to 7), or most significant bits (8 to 15). The choose is
+ensured by LH input.
+
+In instruction register module, we use an always block whose trigger time is clock's
+positive edge. Then if block checks for enable input.
+If enable is 0, then nothing happens so that value of register remains same. If
+enable is 1, then which function will be processed by controlling the FunSel 
+and LH input.
+
+\textbf{inputs:}    clk(1 bit),
+data(8 bits),
+enable(1 bit),
+funsel(2 bits),
+lh(1 bit)
+
+\textbf{outputs:}    
+irout(16 bits)
+
+\textbf{module name:} ir
+
+\subsubsection{Part 2.b}
+In part 2b, we implemented a register file which consists of 8 8-bit register. Half of
+registers are general purpose registers: R1, R2, R3, R4. Other half of registers
+are temporary registers: T1, T2, T3, T4. 
+
+Those registers' value can be changed 
+with FunSel input. To provide effectiveness of FunSel, registers should be enabled
+with RSel and TSel inputs. Enabled registers are changed by FunSel and FunSel has
+4 different functions. They are clear, load, increment and decrement. Load function
+is loading 8-bit load bits to registers.
+
+There are 2 3-bit input ports named O1Sel and O2Sel that determine which registers' 
+value will be reflected to output ports. O1Sel feeds the O1 and O2Sel feeds the O2.
+If 3-bit output selection bits' most significant bit is 0, then a temporary register
+will be reflected to output, if it is 1, then it is a general purpose register.
+
+Enable process is determined by 4-bit RSel and TSel enablitation inputs. Rsel activates
+general purpose registers and TSel avtivates temporary registers. Each bit of
+enablitation input is corresponding to one register. For example, MSB of inputs is
+for first register and LSB of inputs is for fourth register.
+
+In register file module, we use 8 registers which we design in part 1. Those registers
+take 8 as parameter since they are 8-bit registers. Their enable input is determining by
+rsel and tsel inputs. FunSel and load are also be sent to registers to do their tasks.
+Outputs are connected to wires. Then wires are connected to 8:1 multiplexers. Multiplexer
+selections are carrying out by O1Sel and O2Sel. 
+
 \subsubsection{Part 2.c}
 In part 2c, we implemented Adress Register File (ARF) using registers we implemented at 
 very begining. As a parameter values, we gave registers 8 bits as 8 bit is necesarry for 
@@ -76,7 +162,7 @@ Therefore, we can directly send clock, funsel and load informations coming from
 input of this module to these registers without writing them again explicitly.
 
 However, for the rsel, like in the part 2.b we will send individual bits to the enables of
-the registers. As in the insturction, if a bit comming to the enable is 1, then operation
+the registers. As in the instruction, if a bit comming to the enable is 1, then operation
 decleared by funsel will be done.
 
 All 8-bit of information coming from these registers are connected to 16 multiplexers.
@@ -104,22 +190,22 @@ outb(8 bits)
 \textbf{module name:} arf
 
 \subsection{Part 3}
-I designed the required functions of the ALU for each FunSel case. The functions corresponding to each case will be discussed in the
-sub-sections. I defined 4 extra variables that made it easier to design the arithmetic functions. These variables are basically the 9 
+We designed the required functions of the ALU for each FunSel case. The functions corresponding to each case will be discussed in the
+sub-sections. We defined 4 extra variables that made it easier to design the arithmetic functions. These variables are basically the 9 
 bit representations of $A, B, \overline{B}$ and the result $out$ of the corresponding arithmetic operation, with the 9'th bits of 
-$A, B$ and $\overline{B}$ set to 0 to correctly represent arithmetic  operations using 8 bits in verilog. 
-\newline
-I used an always block to be able to change outputs whenever a different input is given and inside of it, I used case statement to
+$A, B$ and $\overline{B}$ set to 0 to correctly represent arithmetic operations using 8 bits in verilog. 
+
+We used an always block to be able to change outputs whenever a different input is given and inside of it, we used case statement to
 give the outputs corresponding to each Funsel input. The registers are never reset and their states change only when they are allowed
 to. 
 \newline
-Before explaining each funsel case, I will talk about the certain patterns I use to check N, Z and C flags whenever it is necessary. 
-For the N flag, I assign the most significant bit of the OutALU to Flag[1], which indicates the sign bit of a binary number. 
-For the Z flag, I check whether the OutALU is compoesed of full of 0's. For the C flag in arithmetic operations I check the most 
-significant bit of the out variable, which is a 9 bit register to store the result of arithmetic operations; in shift operations I 
+Before explaining each funsel case, we will talk about the certain patterns we use to check N, Z and C flags whenever it is necessary. 
+For the N flag, we assign the most significant bit of the OutALU to Flag[1], which indicates the sign bit of a binary number. 
+For the Z flag, we check whether the OutALU is compoesed of full of 0's. For the C flag in arithmetic operations we check the most 
+significant bit of the out variable, which is a 9 bit register to store the result of arithmetic operations; in shift operations we 
 check the dissapearing bits of A after doing the shift operation. That is, the most significant bit for the right shift and the 
 least significant one for the left shift. 
-Checking the overflow flag is basically done by checking the changes in the most significant bit. I will discuss each of them
+Checking the overflow flag is basically done by checking the changes in the most significant bit. We will discuss each of them
 in the following sub-sections, as it is done differently for each operation. 
 
 \subsubsection{FunSel=0000}
