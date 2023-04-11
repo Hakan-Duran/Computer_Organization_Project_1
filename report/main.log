@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.4.9)  11 APR 2023 00:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.4.9)  11 APR 2023 13:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -588,45 +588,45 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1
 
 ] [2] [3] [4] [5]
-<design/arf.png, id=33, 308.352pt x 561.89925pt>
+<design/arf.png, id=32, 308.352pt x 561.89925pt>
 File: design/arf.png Graphic file (type png)
 <use design/arf.png>
 Package pdftex.def Info: design/arf.png  used on input line 285.
 (pdftex.def)             Requested size: 227.62206pt x 414.79579pt.
  [6]
-<design/alu.png, id=38, 741.972pt x 437.83575pt>
+<design/alu.png, id=37, 741.972pt x 437.83575pt>
 File: design/alu.png Graphic file (type png)
 <use design/alu.png>
 Package pdftex.def Info: design/alu.png  used on input line 293.
 (pdftex.def)             Requested size: 227.62206pt x 134.31802pt.
  [7 <./design/arf.png>]
-<design/ALU_system.png, id=43, 772.68675pt x 555.2745pt>
+<design/ALU_system.png, id=42, 772.68675pt x 555.2745pt>
 File: design/ALU_system.png Graphic file (type png)
 <use design/ALU_system.png>
 Package pdftex.def Info: design/ALU_system.png  used on input line 301.
 (pdftex.def)             Requested size: 409.71692pt x 294.43813pt.
-<results/arf.png, id=44, 1136.44576pt x 147.55125pt>
+<results/arf.png, id=43, 1136.44576pt x 147.55125pt>
 File: results/arf.png Graphic file (type png)
 <use results/arf.png>
 Package pdftex.def Info: results/arf.png  used on input line 318.
 (pdftex.def)             Requested size: 455.24411pt x 59.105pt.
  [8 <./design/alu.png> <./design/ALU_system.png>]
-<results/alu_1.png, id=50, 630.55576pt x 131.2905pt>
+<results/alu_1.png, id=49, 630.55576pt x 131.2905pt>
 File: results/alu_1.png Graphic file (type png)
 <use results/alu_1.png>
 Package pdftex.def Info: results/alu_1.png  used on input line 326.
 (pdftex.def)             Requested size: 455.24411pt x 94.7915pt.
-<results/alu_2.png, id=51, 632.96475pt x 136.1085pt>
+<results/alu_2.png, id=50, 632.96475pt x 136.1085pt>
 File: results/alu_2.png Graphic file (type png)
 <use results/alu_2.png>
 Package pdftex.def Info: results/alu_2.png  used on input line 332.
 (pdftex.def)             Requested size: 455.24411pt x 97.89627pt.
-<results/alu_3.png, id=52, 632.3625pt x 131.2905pt>
+<results/alu_3.png, id=51, 632.3625pt x 131.2905pt>
 File: results/alu_3.png Graphic file (type png)
 <use results/alu_3.png>
 Package pdftex.def Info: results/alu_3.png  used on input line 338.
 (pdftex.def)             Requested size: 455.24411pt x 94.51906pt.
-<results/alu_4.png, id=53, 629.35126pt x 137.313pt>
+<results/alu_4.png, id=52, 629.35126pt x 137.313pt>
 File: results/alu_4.png Graphic file (type png)
 <use results/alu_4.png>
 Package pdftex.def Info: results/alu_4.png  used on input line 344.
@@ -639,15 +639,15 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Here is how much of TeX's memory you used:
  16608 strings out of 475385
  345493 string characters out of 2793326
- 676280 words of memory out of 3000000
+ 676281 words of memory out of 3000000
  37654 multiletter control sequences out of 15000+600000
  474128 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,12n,103p,495b,324s stack positions out of 10000i,1000n,20000p,200000b,80000s
-<D:/Miktex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmmi12.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmr17.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on main.pdf (12 pages, 270917 bytes).
+<D:/Miktex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmmi12.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmr17.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on main.pdf (12 pages, 262359 bytes).
 PDF statistics:
- 91 PDF objects out of 1000 (max. 8388607)
+ 86 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  53 words of extra memory for PDF output out of 10000 (max. 10000000)
 

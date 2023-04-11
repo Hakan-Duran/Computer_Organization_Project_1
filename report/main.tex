@@ -106,10 +106,10 @@ outb(8 bits)
 \subsection{Part 3}
 I designed the required functions of the ALU for each FunSel case. The functions corresponding to each case will be discussed in the
 sub-sections. I defined 4 extra variables that made it easier to design the arithmetic functions. These variables are basically the 9 
-bit representations of $A, B, \overline{B}$ and the result $"out"$ of the corresponding arithmetic operation, with the 9'th bits of 
+bit representations of $A, B, \overline{B}$ and the result $out$ of the corresponding arithmetic operation, with the 9'th bits of 
 $A, B$ and $\overline{B}$ set to 0 to correctly represent arithmetic  operations using 8 bits in verilog. 
 \newline
-I used an always block to be able to change outputs whenever a different input is given and inside of it, I used "case" statement to
+I used an always block to be able to change outputs whenever a different input is given and inside of it, I used case statement to
 give the outputs corresponding to each Funsel input. The registers are never reset and their states change only when they are allowed
 to. 
 \newline
@@ -141,14 +141,14 @@ condition as $(A[7]\land B[7])\oplus {OutALU[7]}$, a logic one result indicating
 The result of the addition of 9 bit versions of $A$ and $\overline{B}$ is assigned to the 9 bit variable $out$ with the addition of
 binary 1. After that the necessary flags are set.
 \newline
-When subtracting two binary numbers an overflow can occur only when the two numbers have different signs, denoted by $A[7]^B[7]$.
+When subtracting two binary numbers an overflow can occur only when the two numbers have different signs, denoted by $A[7]\oplus {B[7]}$.
 We can understand that an overflow occured when the result is different than the sign of the first operand, A, since subtracting 
 a number with a different sign should always result in a number having the same sign as the first operand. We can denote this 
-condition by $A[7]\oplus {OutALU[7]}$. We can combine the two logic expressions we formed by "and"ing them to create a logic expression 
+condition by $A[7]\oplus {OutALU[7]}$. We can combine the two logic expressions we formed by and'ing them to create a logic expression 
 for overflow, which can be written as $(A[7]\oplus {B[7]})\land(A[7]\oplus {OutALU[7]})$, a logic one result indicating that an 
 overflow occured. 
 \subsubsection{FunSel=0110}
-For the "compare" function, the "subtraction" operation explained in the previous sub-section is used with the corresponding flags.
+For the compare function, the subtraction operation explained in the previous sub-section is used with the corresponding flags.
 However this time the result of the subtraction is interpreted considering the flags to give the required output.
 The function interprets the result using if/else statements. In the if statements the possible cases indicating $A>B$ are checked
 and the OutALU is set as A if the condition is true, else OutALU is set as full of 0's.
@@ -161,28 +161,28 @@ This is denoted by the logic expression $Flag[0]\land\overline{A[7]}$.
 \newline
 All other combinations of flag outputs imply that either $B>A$ or $A=B$, which will result in a 0 output.
 \subsubsection{FunSel=0111}
-The result of the "bitwise and" operation on A and B is assigned to OutALU, then the necessary flags are set. 
+The result of the bitwise and operation on A and B is assigned to OutALU, then the necessary flags are set. 
 \subsubsection{FunSel=1000}
-The result of the "bitwise or" operation on A and B is assigned to OutALU, then the necessary flags are set. 
+The result of the bitwise or operation on A and B is assigned to OutALU, then the necessary flags are set. 
 \subsubsection{FunSel=1001}
-The result of the "bitwise nand" operation on A and B, done by negating every bit of $A\land B$ is assigned to OutALU, then the 
+The result of the bitwise nand operation on A and B, done by negating every bit of $A\land B$ is assigned to OutALU, then the 
 necessary flags are set. 
 \subsubsection{FunSel=1010}
-The result of the "bitwise xor" operation on A and B is assigned to OutALU, then the necessary flags are set. 
+The result of the bitwise xor operation on A and B is assigned to OutALU, then the necessary flags are set. 
 \subsubsection{FunSel=1011}
-The result of "logic shift left" operation by 1 bit on A is stored in OutALU. After that the necesarry flags are set. 
+The result of logic shift left operation by 1 bit on A is stored in OutALU. After that the necesarry flags are set. 
 \subsubsection{FunSel=1100}
-The result of "logic shift right" operation by 1 bit on A is stored in OutALU. After that the necesarry flags are set. 
+The result of logic shift right operation by 1 bit on A is stored in OutALU. After that the necesarry flags are set. 
 \subsubsection{FunSel=1101}
-The result of "logic shift left" operation by 1 bit on A is stored in OutALU. After that the necesarry flags are set.
+The result of logic shift left operation by 1 bit on A is stored in OutALU. After that the necesarry flags are set.
 \newline
 Here, if The most significant bit of OutALU is not the same as that of $A$'s an overflow flag is raised. This is denoted by the logic
 expression $A[7]\oplus{OutALU[7]}$, a logic 1 result indicating that an overflow occured.
 \subsubsection{FunSel=1110}
-The result of "logic shift right" operation by 1 bit on A is stored in OutALU. Then, the most significant bit of OutALU is set 
+The result of logic shift right operation by 1 bit on A is stored in OutALU. Then, the most significant bit of OutALU is set 
 equal to the most significant bit of $A$ as expected to prevent overflow. After that the zero flag is set.
 \subsubsection{FunSel=1111}
-The result of "logic shift right" operation by 1 bit on A is stored in OutALU. The least significant bit of $A$ is assigned to the 
+The result of logic shift right operation by 1 bit on A is stored in OutALU. The least significant bit of $A$ is assigned to the 
 most significant bit of OutALU so that the circular shift is done correctly. After that the necesarry flags are set. 
 
 \subsubsection{}
