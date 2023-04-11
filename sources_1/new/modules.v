@@ -493,9 +493,9 @@ endmodule
 
 
 
-module ALUSystem (
-    input [1:0] ARF_OutASel,
-    input[1:0] ARF_OutBSel,
+module ALU_System (
+    input [1:0] ARF_OutCSel,
+    input[1:0] ARF_OutDSel,
     input [1:0] IR_Funsel,
     input [1:0] ARF_FunSel,
     input [1:0] RF_FunSel,
@@ -503,7 +503,7 @@ module ALUSystem (
 
 
     input [3:0] RF_RSel,
-    input [3:0] ARF_RSel,
+    input [3:0] ARF_RegSel,
     input Clock,
     input Mem_WR,
     input Mem_CS,
@@ -536,7 +536,7 @@ module ALUSystem (
 
 
 
-    arf ARF(Clock,MuxBOut, ARF_OutASel, ARF_OutBSel,ARF_FunSel,ARF_RSel,ARF_AOut,Address);
+    arf ARF(Clock,MuxBOut, ARF_OutCSel, ARF_OutDSel,ARF_FunSel,ARF_RegSel,ARF_AOut,Address);
     Memory MEMORY(Address, ALUOut, Mem_WR, Mem_CS, Clock, MemoryOut);
 
     ir IR(Clock, MemoryOut, IR_Enable,IR_Funsel,IR_LH, IROut); 
