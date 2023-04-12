@@ -177,6 +177,21 @@ rsel and tsel inputs. FunSel and load are also be sent to registers to do their 
 Outputs are connected to wires. Then wires are connected to 8:1 multiplexers. Multiplexer
 selections are carrying out by O1Sel and O2Sel. 
 
+\subsubsection{}
+\textbf{inputs:} clk(1 bit),
+load(8 bits),
+o1sel(3 bits),
+o2sel(3 bits),
+funsel(2 bit),
+rsel(4 bits),
+tsel(4 bits)
+
+\textbf{outputs:} 
+o1(8 bits),
+o2(8 bits)
+
+\textbf{module name:} reg8_8
+
 \subsubsection{Part 2.c}
 In part 2c, we implemented Adress Register File (ARF) using registers we implemented at 
 very begining. As a parameter values, we gave registers 8 bits as 8 bit is necesarry for 
