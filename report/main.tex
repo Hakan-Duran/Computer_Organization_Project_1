@@ -539,32 +539,36 @@ we are in the write mode it gives high impedance as output and in the read mode
 result of the part 4 is still contreversial so we will wait for it.
 
 \section{DISCUSSION}
-With the first input sequence all registers in ARF and RF are reset to 0. This is because the RFRSel, RFTSel and ARFRegSel all have 
-1111 values. Therefore all the registers are enabled. Then, with the FunSel inputs of ARF and RF are 00, we reset all the register
-values to 0. In the first sequence output result are all x's, because register values at that time are undetermined.
-
-
-
-The ALU takes the A input from MuxCOut and the B input from outB. At first the value coming from MuxCOut is 0 and the value coming
-from outB is 0. The initial value of FunSel for ALU is 0 which makes the OutALU equal to the value of the first input which is 
-MuxCOut (0). Then, the ALU Funsel changes to 0011 which means that the OutALU should be equal to $\overline{B}$. Since the B value
-is 0, the OutALU becomes 11111111. At 21'st nanosecond the FunSel for ALU takes the value 1100, since at that time the MuxCOut has
-the value 00000001, the ALU performs the logic shift right operation on the A value, which produces the result OutALU=0. The rightmost
-bit is assigned to the carry bit of the flag.
-
+\subsubsection{Memory}
 Enable bit (cs) of the memory unit is always 1 which means it is not enabled for entire Simulation. So the MemoryOut value is always
 equal to Z (high impedance). 
-
+\subsubsection{Instruction register}
 The instruction register's funsel input is always 00, therefore it never takes input from the memory unit and it always outputs 0 
 in spite of the L/H value. Because both the lower and the higher bits are updated to 0.
-
+\subsubsection{Multiplexers}
 The multiplexers are used to make decision about which components' outputs will be used as the inputs of the next components, including
 the selection of the first input of ALU and the load values of ARF and RF.
-
-Since the memory is not enabled, address register file's address result has no importance. With the third positive edge of the clock, 
-the value of ARFAOut becomes 00000001 from 00000000 because of the 11 value of the funsel (increment by one). This value of ARFAOut
-is used in MuxCOut.
-
+\subsubsection{Address Register File}
+Since the memory is not enabled, address register file's address result has no importance. Because MuxCSel is always 1, MuxCOut is always reflects what
+ARFAOut is.
+\subsubsection{Register File}
+Register file's AOut is never used because of MuxCSel's selection. BOut is used in second sequence because ALU was at 0011 operation which is
+$\overline{B}$ operation.
+\subsubsubsection{First sequence}
+With the first input sequence from TestBench.mem, all registers in ARF and RF are reset to 0. This is because the RFRSel, RFTSel and ARFRegSel all have 
+1111 values. Therefore all the registers are enabled. Then, with the FunSel inputs of ARF and RF are 00, we reset all the register
+values to 0. In the first sequence output result are all x's, because register values at that time are undetermined.
+\subsubsubsection{Second sequence}
+In second input sequence from TestBench.mem, The ALU takes the A input from MuxCOut and the B input from outB. At first the value 
+coming from MuxCOut is 0 and the value coming
+from outB is 0. The initial value of FunSel for ALU is 0000 which makes the OutALU equal to the value of the first input which is 
+MuxCOut (0). After 1 nanosecond, new assignment of instruction code from TestBench.mem happens and 
+the ALU Funsel changes to 0011 which means that the OutALU should be equal to $\overline{B}$. Since the B value
+is 0, the OutALU becomes 11111111. 
+\subsubsubsection{Third sequence}
+At 21'st nanosecond the FunSel for ALU takes the value 1100, since at that time the MuxCOut has
+the value 00000001, the ALU performs the logic shift right operation on the A value, which produces the result OutALU=0. The rightmost
+bit is assigned to the carry bit of the flag.
 \section{CONCLUSION}
 In this project, we have implemented a primitive computer. It is capable of doing arithmetic, logic and shift operations in ALU on values taken from
 registers and store the result of the operation in a memory unit or reuse that value in the following operations. The register values can be 
