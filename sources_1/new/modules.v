@@ -402,9 +402,9 @@ B_comp_9[8] = 0;
             end
         4'b1111 : begin
             OutALU = A>>1;
-            OutALU[7] = A[0];
-            Flag[1] = OutALU[7];
             Flag[2] = A[0];
+            OutALU[7] = Flag[2];
+            Flag[1] = OutALU[7];
             if(OutALU === 8'b00000000) begin
                     Flag[3] = 1;
                 end
