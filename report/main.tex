@@ -64,7 +64,8 @@
 \setcounter{page}{1}
 \section{INTRODUCTION}
 In this project our purpose is to make arithmetic logic unit (ALU) system. To achive 
-this we firstly implemented small components of this system. 
+this we firstly implemented small components of this system. Hakan did the parts 1, 2.a and 2.b; 
+Yusuf did the parts 2.c and 4; Emre did the part 3.
 
 At first, we designed n-bit register which accepts any n bit binary number and make
 operations as if loading incrementing and decrementing by 1 and clearing.
@@ -106,6 +107,7 @@ is when clock is at positive edge situation. Then if block checks for enable inp
 If enable is 0, then nothing happens so that value of register remains same. If
 enable is 1, then which function will be processed by controlling the FunSel input.
 
+\subsubsection{}
 \textbf{inputs:}    clk(1 bit),
 enable(1 bit),
 funsel(2 bits),
@@ -136,6 +138,7 @@ If enable is 0, then nothing happens so that value of register remains same. If
 enable is 1, then which function will be processed by controlling the FunSel 
 and LH input.
 
+\subsubsection{}
 \textbf{inputs:}    clk(1 bit),
 data(8 bits),
 enable(1 bit),
@@ -197,6 +200,7 @@ in the part 2.c; 00 gives AR's bits,01 SP's bits, 10 PCPrev's bits,11 PC's bits.
 These two 8 bits comming from multipexers concatinated in outa and outb and gaved as
 the output of the module.
 
+\subsubsection{}
 \textbf{inputs:}    clk(1 bit),
 load(8 bits),
 outasel(2 bits),
@@ -354,7 +358,7 @@ we are in the write mode it gives high impedance as output and in the read mode
 
 	
 
-
+	\subsubsection{}
 	\textbf{inputs:}
 	ARFOutCSel(2 bit), ARFOutDSel(2 bit), IRFunsel(2 bit), ARFFunSel(2 bit),
 	RFFunSel(2 bit), ALUFunSel(4 bit), RFRSel(4 bit), ARFRegSel(4 bit),
