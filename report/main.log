@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.4.9)  12 APR 2023 15:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.4.9)  12 APR 2023 16:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -670,7 +670,7 @@ File: results/alu_4.png Graphic file (type png)
 <use results/alu_4.png>
 Package pdftex.def Info: results/alu_4.png  used on input line 533.
 (pdftex.def)             Requested size: 455.24411pt x 71.33316pt.
- [15 <./results/alu_2.png> <./results/alu_3.png> <./results/alu_4.png>] (main.aux)
+ [15 <./results/alu_2.png> <./results/alu_3.png> <./results/alu_4.png>] [16] (main.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -684,9 +684,9 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  99i,12n,103p,495b,324s stack positions out of 10000i,1000n,20000p,200000b,80000s
 <D:/Miktex/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmmi12.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmr17.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/Miktex/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on main.pdf (17 pages, 482775 bytes).
+Output written on main.pdf (18 pages, 485104 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
+ 116 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  83 words of extra memory for PDF output out of 10000 (max. 10000000)
 

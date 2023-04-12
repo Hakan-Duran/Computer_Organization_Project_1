@@ -47,4 +47,5 @@
 \contentsline {subsubsection}{\numberline {4.2.3}Part 2.c}{14}{}%
 \contentsline {subsection}{\numberline {4.3}Part 3}{14}{}%
 \contentsline {subsection}{\numberline {4.4}Part 4}{15}{}%
-\contentsline {section}{\numberline {5}CONCLUSION}{15}{}%
+\contentsline {section}{\numberline {5}DISCUSSION}{15}{}%
+\contentsline {section}{\numberline {6}CONCLUSION}{16}{}%

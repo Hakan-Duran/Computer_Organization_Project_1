@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1681302146 "d:/Computer_Organization_Homework_1/Homework_1/Homework_1.srcs/report/main.tex" "main.pdf" "main" 1681302149 2
+["pdflatex"] 1681305330 "d:/Computer_Organization_Homework_1/Homework_1/Homework_1.srcs/report/main.tex" "main.pdf" "main" 1681305333 2
   "C:/Users/USER/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1681139188 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/USER/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1681059643 10771591 b910293c3ac84d1719f0f25c651f6218 ""
   "D:/Miktex/fonts/tfm/public/cm/cmbx12.tfm" 1136765053 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -138,16 +138,16 @@
   "D:/Miktex/tex/latex/tools/calc.sty" 1654690828 10214 de3e21cfc0eccc98ca7f8dac0ef263d2 ""
   "D:/Miktex/tex/latex/tools/indentfirst.sty" 1654690828 1618 6f0598aa81f9ba5cf5d393b4abd3e091 ""
   "D:/Miktex/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "d:/Computer_Organization_Homework_1/Homework_1/Homework_1.srcs/report/main.tex" 1681302142 21915 80845a3415913795c39fcd515320ff86 ""
+  "d:/Computer_Organization_Homework_1/Homework_1/Homework_1.srcs/report/main.tex" 1681305329 23934 13fd0b2febcb836af17fb87a382c05c1 ""
   "design/ALU_system.png" 1681058803 90480 d5a1aa4db4d1d333342c6e6813def274 ""
   "design/alu.png" 1681162031 44031 d4f19a1aab93c9ab8bbe45bba861613c ""
   "design/arf.png" 1681058803 42578 1df3544b8cf102d27e5bc7bc555a349c ""
   "design/ir.png" 1681228012 5394863 d39588cb822c09adde74234b62b933ea ""
   "design/register.png" 1681228012 40593 95d066b76de83b4ec7287d9baadd781a ""
   "design/rf.png" 1681228012 1807752 86e369d010c9590b004df056c309a646 ""
-  "main.aux" 1681302148 7279 76b2d42e41fb93f933740723a245e63d "pdflatex"
-  "main.tex" 1681302142 21915 80845a3415913795c39fcd515320ff86 ""
-  "main.toc" 1681302148 3054 d7b979437d254171c4c9a02835756310 "pdflatex"
+  "main.aux" 1681305332 7378 268c316dc575005b2e98bf5fbf6d0d4e "pdflatex"
+  "main.tex" 1681305329 23934 13fd0b2febcb836af17fb87a382c05c1 ""
+  "main.toc" 1681305332 3112 3e1c8db369e53c84d8c25acc2f9b0536 "pdflatex"
   "results/alu_1.png" 1681231656 18195 e70f11c7874682db91ea6d4c81d6873c ""
   "results/alu_2.png" 1681231698 17593 f5ba5e9d1d87277b3eb6c9fb14c7a20f ""
   "results/alu_3.png" 1681231738 17463 3575436192a757494d2d338fef6d03b3 ""
