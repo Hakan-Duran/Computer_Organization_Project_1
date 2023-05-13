@@ -3,7 +3,7 @@ With this project, we made a simple computer which contains ALU and and special 
 
 [More information and requirments of the project](BLG222E_Project1_2023_Questions.pdf)
 
-[Detailied explanation of our implementations](report/main.pdf)
+[Detailed explanation of our implementations](report/main.pdf)
 
 
 
