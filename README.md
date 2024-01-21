@@ -5,5 +5,5 @@ With this project, we made a simple arithmetic logic unit (ALU) system that cont
 
 [Detailed explanation of our implementations](report/main.pdf)
 
-Need to also mention that working alongside [Hakan](https://github.com/Hakan-Duran) and [Emre](https://github.com/emre-camlica) was an absolute pleasure. 
+Need to also mention that working alongside [Yusuf](https://github.com/mymermer) was an absolute pleasure. 
 
